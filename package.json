@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "Simple json database to deploy to the host of your choice",
   "main": "server.js",
- "scripts": {
-    "start" : "node server.js"
- },
+  "scripts": {
+    "start": "node server.js"
+  },
   "keywords": [
     "json-server,heroku, node, REST API"
   ],
   "author": "Jesper Orb",
   "license": "ISC",
   "dependencies": {
-    "json-server": "^0.16.2"
+    "cheerio": "^1.0.0-rc.10",
+    "edit-json-file": "^1.6.0",
+    "json-server": "^0.16.2",
+    "node-fetch": "^2.6.1",
+    "request-promise": "^4.2.6"
   }
 }
