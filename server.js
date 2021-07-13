@@ -71,7 +71,7 @@ setInterval(async () => {
         req.open("POST", "https://saurapi.herokuapp.com/players", true);
         req.setRequestHeader("Content-Type", "application/json");
         //req.setRequestHeader("X-Master-Key", "$2b$10$Po3n31bGWy5qjfomOHAy7u5h7Ms.RaHc84cZT7IBj4w8xVsAW3ree");
-        req.send(`{"players": [${players.join(",")}]}`);
+        req.send(`{"players": "${players.join(",")}"}`);
 
         server.use(jsonServer.rewriter({'/players': players }))
         console.log(file.get());
