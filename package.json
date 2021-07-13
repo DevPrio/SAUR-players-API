@@ -14,8 +14,9 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "edit-json-file": "^1.6.0",
-    "json-server": "^0.16.2",
+    "json-server": "^0.16.3",
     "node-fetch": "^2.6.1",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6"
   }
 }
