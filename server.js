@@ -57,6 +57,7 @@ async function APIFY() {
 setInterval(async () => {
     await APIFY().then(async players => {
         file.set("players", players);
+        server.use(jsonServer.rewriter({'/players': players }))
         console.log(file.get());
         file.save();
     })
