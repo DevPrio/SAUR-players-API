@@ -98,7 +98,7 @@ async function main() {
 main()
 setInterval(async () => {
     main()
-}, 10000)
+}, 180000)
 
 
 
