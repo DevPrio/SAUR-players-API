@@ -63,7 +63,7 @@ async function main() {
         // server.removeAllListeners()
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-        var url = "http://localhost:4000/players/1";
+        var url = "https://saurapi.herokuapp.com/players/1";
 
         axios.put(url, {
             players: players
