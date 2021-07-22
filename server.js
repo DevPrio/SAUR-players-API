@@ -1,7 +1,7 @@
 const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('players.json');
-const middlewares = jsonServer.defaults();
+let server = jsonServer.create();
+let router = jsonServer.router('players.json');
+let middlewares = jsonServer.defaults();
 const port = process.env.PORT || 4000;
 
 const RequestPromise = require("request-promise")
@@ -54,33 +54,61 @@ async function APIFY() {
     return players
 }
 
-setInterval(async () => {
+async function main() {
     await APIFY().then(async players => {
-        file.set("players", players);
-        console.log(players)
+        const axios = require('axios');
+        //file.set("players", players);
+        //console.log(players)
+        //axios.delete('http://localhost:4000/players')
+        // server.removeAllListeners()
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-        var xhr = new XMLHttpRequest();
-        let req = new XMLHttpRequest();
 
-        req.onreadystatechange = () => {
-            if (req.readyState == XMLHttpRequest.DONE) {
-                console.log(req.responseText);
-            }
-        };
+        var url = "http://localhost:4000/players/1";
 
-        req.open("POST", "https://saurapi.herokuapp.com/players", true);
-        req.setRequestHeader("Content-Type", "application/json");
-        //req.setRequestHeader("X-Master-Key", "$2b$10$Po3n31bGWy5qjfomOHAy7u5h7Ms.RaHc84cZT7IBj4w8xVsAW3ree");
-        req.send(`{"players": "${players.join(",")}"}`);
+        axios.put(url, {
+            players: players
+        }).then(resp => {
 
-        server.use(jsonServer.rewriter({'/players': players }))
-        console.log(file.get());
-        file.save();
+            console.log(resp.data);
+        }).catch(error => {
+
+            console.log(error);
+        });
+
+        /*axios.post('http://localhost:4000/players', {
+            id: 0,
+            first_name: 'Fred',
+            last_name: 'Blair',
+            email: 'freddyb34@yahoo.com'
+        }).then(resp => {
+        
+            console.log(resp.data);
+        }).catch(error => {
+        
+            console.log(error);
+        });  */
+
+
+        // server.use(jsonServer.rewriter({'/players': players }))
+        //console.log(file.get());
+        //file.save();
     })
+}
+
+main()
+setInterval(async () => {
+    main()
 }, 10000)
 
 
+
+router.put("/players:id", function (req, res, next) {
+    console.log(req)
+    console.log(res)
+    //console.log(next)
+})
+
 server.use(middlewares);
 server.use(router);
-
+//server.use(watcher)
 server.listen(port);
