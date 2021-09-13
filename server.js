@@ -22,7 +22,7 @@ async function scrape() {
     let url = "https://www.game-state.com/193.70.80.143:22003/"
     let options = {
         url,
-        transform: function (body) {
+        transform: function(body) {
             return Cheerio.load(body)
         }
     }
@@ -57,10 +57,6 @@ async function APIFY() {
 async function main() {
     await APIFY().then(async players => {
         const axios = require('axios');
-        //file.set("players", players);
-        //console.log(players)
-        //axios.delete('http://localhost:4000/players')
-        // server.removeAllListeners()
         var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
         var url = "https://saurapi.herokuapp.com/players/1";
@@ -75,23 +71,6 @@ async function main() {
             console.log(error);
         });
 
-        /*axios.post('http://localhost:4000/players', {
-            id: 0,
-            first_name: 'Fred',
-            last_name: 'Blair',
-            email: 'freddyb34@yahoo.com'
-        }).then(resp => {
-        
-            console.log(resp.data);
-        }).catch(error => {
-        
-            console.log(error);
-        });  */
-
-
-        // server.use(jsonServer.rewriter({'/players': players }))
-        //console.log(file.get());
-        //file.save();
     })
 }
 
@@ -102,7 +81,7 @@ setInterval(async () => {
 
 
 
-router.put("/players:id", function (req, res, next) {
+router.put("/players:id", function(req, res, next) {
     console.log(req)
     console.log(res)
     //console.log(next)
