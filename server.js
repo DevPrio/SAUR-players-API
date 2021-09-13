@@ -84,10 +84,8 @@ setInterval(async () => {
 router.put("/players:id", function(req, res, next) {
     console.log(req)
     console.log(res)
-    //console.log(next)
 })
 
 server.use(middlewares);
 server.use(router);
-//server.use(watcher)
 server.listen(port);
